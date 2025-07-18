@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary - DAISYGRACE ESSENTIALS STORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order summary and secure checkout for DAISYGRACE ESSENTIALS STORE. Review your cart, enter delivery details, and choose a payment method.">
+    <link rel="icon" type="image/png" href="image/FAVICON.png">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700|Poppins:400,500,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF7F50;
+            --secondary: #7DDEC2;
+            --background: #FDF7F0;
+            --surface: #FFFFFF;
+            --accent: #FFD600;
+            --dark: #2D3748;
+            --shadow: 0 6px 32px #ff7f5020;
+            --radius-lg: 2rem;
+            --radius-md: 1.2rem;
+            --radius-sm: .7rem;
+        }
+        body {
+            font-family: 'Quicksand', 'Poppins', Arial, sans-serif;
+            background: var(--background);
+            margin: 0;
+            padding: 0;
+        }
+        .summary-container {
+            max-width: 540px;
+            margin: 36px auto;
+            background: var(--surface);
+            padding: 36px 32px 34px 32px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+        .brand-logo {
+            display: block;
+            margin: 0 auto 22px auto;
+            width: 96px;
+            height: 96px;
+            border-radius: 20px;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 2px 10px #FF7F5020;
+            border: 2.5px solid var(--primary);
+        }
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-weight: 800;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 2.1em;
+            text-shadow: 0 2px 12px #FFD60044;
+            margin-bottom: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 13px;
+            font-size: 1.08em;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.22em;
+            color: var(--primary);
+            margin-top: 20px;
+            letter-spacing: 0.01em;
+        }
+        .back-btn {
+            display: block;
+            margin: 28px auto 0 auto;
+            background: var(--primary);
+            color: var(--surface);
+            border: none;
+            border-radius: 7px;
+            padding: 16px 40px;
+            font-size: 1.09em;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            box-shadow: 0 2px 9px #FF7F5022;
+            letter-spacing: 0.01em;
+            width: fit-content;
+            min-width: 170px;
+        }
+        .back-btn:hover, .back-btn:focus {
+            background: #db5400;
+            color: #fff;
+            box-shadow: 0 4px 14px #FF7F5033;
+            text-decoration: none;
+            outline: none;
+        }
+        .empty {
+            color: #888;
+            text-align: center;
+            margin: 32px 0;
+            font-size: 1.08em;
+        }
+        form.checkout-form {
+            margin-top: 36px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 7px;
+            color: var(--dark);
+            font-size: 1em;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 9px;
+            font-size: 1em;
+            border-radius: 7px;
+            border: 1.2px solid #FFD60077;
+            box-sizing: border-box;
+            background: #FDF7F0;
+            font-family: 'Quicksand', Arial, sans-serif;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 52px;
+        }
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: var(--surface);
+            border: none;
+            border-radius: 9px;
+            padding: 15px 0;
+            font-size: 1.14em;
+            cursor: pointer;
+            margin-top: 12px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 800;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: #db5400;
+        }
+        .required {
+            color: #c02618;
+        }
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            margin-bottom: 13px;
+        }
+        .payment-options-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border: 1.5px solid #FFD60033;
+            border-radius: 9px;
+            cursor: pointer;
+            background: #FDF7F0;
+            transition: border 0.2s, background 0.2s;
+            font-size: 1.09em;
+            min-width: 0;
+            user-select: none;
+            flex: 1;
+            font-family: 'Quicksand', Arial, sans-serif;
+        }
+        .payment-option.selected {
+            border: 2px solid var(--primary);
+            background: #FFF7EE;
+        }
+        .payment-icon {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px #FFD60011;
+            margin-right: 6px;
+        }
+        .hidden-radio {
+            display: none;
+        }
+        .success-message {
+            color: var(--primary);
+            background: #FFF7EE;
+            border: 1px solid #FFD60033;
+            padding: 22px 15px;
+            border-radius: 10px;
+            margin: 26px 0;
+            text-align: center;
+            font-size: 1.09em;
+            font-weight: 700;
+        }
+        .order-info-box {
+            background: #FDF7F0;
+            border-left: 4px solid var(--primary);
+            padding: 18px 22px;
+            margin: 38px 0 0 0;
+            border-radius: 11px;
+            color: var(--dark);
+            font-size: 1.07em;
+            font-family: 'Quicksand', Arial, sans-serif;
+        }
+        .order-info-box strong {
+            color: var(--primary);
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 800;
+        }
+        .order-section-title {
+            font-size: 1.11em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        .order-section-content {
+            margin-left: 2em;
+            margin-bottom: 14px;
+            margin-top: 4px;
+        }
+        .order-section-content ul {
+            margin: 8px 0 8px 1.4em;
+            padding-left: 0;
+        }
+        @media (max-width: 650px) {
+            .brand-logo { width: 64px; height: 64px; }
+            .back-btn { min-width: 110px; padding: 12px 18px; font-size: 1em;}
+            .payment-option { font-size: 1em;}
+            .payment-icon { width: 24px; height: 24px; }
+            .summary-container { padding: 14px 4vw 18px 4vw;}
+        }
+        @media (max-width: 450px) {
+            .summary-container { padding: 6px 2vw 12px 2vw;}
+            .brand-logo { width: 48px; height: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="summary-container">
+        <img src="image/LOGO.png" alt="DAISYGRACE Essentials Store Logo" class="brand-logo" loading="lazy" width="96" height="96">
+        <h1>Order Summary</h1>
+        <ul id="order-list"></ul>
+        <div class="total" id="order-total"></div>
+        <form class="checkout-form" id="checkout-form" autocomplete="off" method="POST" action="#">
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" maxlength="60" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="name">Recipient Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" maxlength="40" required autocomplete="name">
+            </div>
+            <div class="form-group">
+                <label for="organization">Organization (Optional)</label>
+                <input type="text" id="organization" name="organization" maxlength="40">
+            </div>
+            <div class="form-group">
+                <label for="street">Street Address <span class="required">*</span></label>
+                <textarea id="street" name="street" maxlength="120" required autocomplete="street-address"></textarea>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="suburb">Barangay/Subdivision <span class="required">*</span></label>
+                    <input type="text" id="suburb" name="suburb" maxlength="30" required>
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="city">City <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" maxlength="30" required>
+                </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;">
+                    <label for="postal">Postal Code <span class="required">*</span></label>
+                    <input type="text" id="postal" name="postal" maxlength="8" required pattern="^\d{4,6}$">
+                </div>
+                <div class="form-group" style="flex:1;">
+                    <label for="province">Province <span class="required">*</span></label>
+                    <input type="text" id="province" name="province" maxlength="30" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" maxlength="15" pattern="^09\d{9}$" placeholder="09XXXXXXXXX" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label>Payment Method <span class="required">*</span></label>
+                <div class="payment-methods" id="payment-methods"></div>
+                <input type="hidden" name="payment" id="payment-hidden" required>
+            </div>
+            <input type="hidden" name="order_details" id="order-details-hidden">
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+        <div class="success-message" id="success-message" style="display:none;">
+            <b>Your order has been submitted!</b><br><br>
+            A member of the DAISYGRACE team will reach out soon to confirm your order details, including item selection, color choices, and availability.<br>
+            Please review and verify all order specifics when contacted.<br><br>
+            Once details are confirmed, you’ll receive a secure payment link according to your selected payment method.<br>
+            <b>Important:</b> Kindly complete your payment within 24 hours to secure your order. Unpaid orders may be cancelled automatically.<br><br>
+            Thank you for choosing DAISYGRACE ESSENTIALS STORE!
+        </div>
+        <div class="order-info-box">
+            <strong>Order Review & Next Steps</strong>
+            <p style="margin:14px 0 16px 0;">
+                Thank you for shopping with <strong>DAISYGRACE ESSENTIALS STORE</strong>.<br>
+                Here’s what happens next:
+            </p>
+            <div class="order-section-title"><span style="font-size:1.13em;">👩‍💼</span>Order Confirmation</div>
+            <div class="order-section-content">
+                After you submit your order, our staff will contact you personally to confirm all details—such as product styles, quantities, and any specific preferences. Please verify all information during this step.
+            </div>
+            <div class="order-section-title"><span style="font-size:1.13em;">💳</span>Payment Link</div>
+            <div class="order-section-content">
+                Once confirmed, you’ll receive a payment link or instructions for your chosen method. Please make your payment within <b>24 hours</b> to reserve your order. Orders not paid within this period are subject to automatic cancellation.
+            </div>
+            <div class="order-section-title"><span style="font-size:1.13em;">⏰</span>Processing & Delivery</div>
+            <div class="order-section-content">
+                Upon successful payment, your order will be prepared and shipped as soon as possible. Delivery times may vary by location and logistics provider.
+            </div>
+            <div class="order-section-title"><span style="font-size:1.13em;">📱</span>Need Assistance?</div>
+            <div class="order-section-content">
+                If you have questions or require help, please contact us at
+                <a href="mailto:contact@daisygracestore.com">contact@daisygracestore.com</a>.<br>
+                We’re here to assist you every step of the way!
+            </div>
+            <div style="margin-top:16px;">
+                Thank you for choosing <strong>DAISYGRACE ESSENTIALS STORE</strong>.<br>
+                We appreciate your trust and look forward to serving you!
+            </div>
+        </div>
+        <a href="index.html" class="back-btn">← Return to Shop</a>
+    </div>
+    <script>
+        // Payment methods
+        const paymentGroups = [
+            [{ name: "GCASH", icon: "image/GCASH.png" }],
+            [{ name: "BDO", icon: "image/BDO.png" }, { name: "BPI", icon: "image/BPI.png" }],
+            [{ name: "CASH ON DELIVERY", icon: "" }]
+        ];
+        const paymentMethodsDiv = document.getElementById('payment-methods');
+        let paymentIdx = 0;
+        paymentGroups.forEach((group) => {
+            let groupDiv = document.createElement('div');
+            groupDiv.className = 'payment-options-row';
+            group.forEach(platform => {
+                let container = document.createElement('div');
+                container.className = 'payment-option';
+                container.tabIndex = 0;
+                container.setAttribute('role', 'radio');
+                container.setAttribute('aria-checked', 'false');
+                container.style.flex = "1";
+                let html = `<input type="radio" class="hidden-radio" name="pmethod" id="pmethod${paymentIdx}" value="${platform.name}">`;
+                if (platform.icon) html += `<img src="${platform.icon}" class="payment-icon" alt="${platform.name}">`;
+                html += `<span>${platform.name}</span>`;
+                container.innerHTML = html;
+                container.addEventListener('click', function(e) {
+                    document.querySelectorAll('.payment-option').forEach((el, i) => {
+                        el.classList.toggle('selected', el === container);
+                        el.setAttribute('aria-checked', el === container ? 'true' : 'false');
+                        el.querySelector('.hidden-radio').checked = el === container;
+                    });
+                    document.getElementById('payment-hidden').value = platform.name;
+                });
+                container.addEventListener('keydown', function(e) {
+                    if (e.key === "Enter" || e.key === " ") container.click();
+                });
+                groupDiv.appendChild(container);
+                paymentIdx++;
+            });
+            paymentMethodsDiv.appendChild(groupDiv);
+        });
+
+        // Cart from localStorage
+        const cart = JSON.parse(localStorage.getItem('daisygrace_cart') || "[]");
+        const orderList = document.getElementById('order-list');
+        const orderTotal = document.getElementById('order-total');
+        let total = 0;
+        if (cart.length === 0) {
+            orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+            orderTotal.textContent = "";
+            document.getElementById('checkout-form').style.display = "none";
+        } else {
+            let detailsText = "";
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} x ${item.qty} - $${(parseFloat(item.price) * item.qty).toFixed(2)}`;
+                orderList.appendChild(li);
+                total += parseFloat(item.price) * item.qty;
+                detailsText += `${item.name} x ${item.qty} - $${(parseFloat(item.price) * item.qty).toFixed(2)}\n`;
+            });
+            orderTotal.textContent = `Total: $${total.toFixed(2)}`;
+            document.getElementById('order-details-hidden').value = detailsText + `Total: $${total.toFixed(2)}`;
+        }
+
+        // Form validation & submit
+        document.getElementById('checkout-form').onsubmit = function(e){
+            if (!document.getElementById('payment-hidden').value) {
+                alert("Please select your preferred payment method.");
+                return false;
+            }
+            const name = document.getElementById('name').value.trim();
+            const street = document.getElementById('street').value.trim();
+            const suburb = document.getElementById('suburb').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postal = document.getElementById('postal').value.trim();
+            const province = document.getElementById('province').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!name || !street || !suburb || !city || !postal || !province || !phone) {
+                alert("Please fill out all required fields.");
+                return false;
+            }
+            if (!/^09\d{9}$/.test(phone)) {
+                alert("Please enter a valid Philippine mobile number (09XXXXXXXXX).");
+                document.getElementById('phone').focus();
+                return false;
+            }
+            if (!/^\d{4,6}$/.test(postal)) {
+                alert("Please enter a valid Philippine postal code (4 to 6 digits).");
+                document.getElementById('postal').focus();
+                return false;
+            }
+            setTimeout(function() {
+                document.getElementById('checkout-form').style.display = "none";
+                document.getElementById('success-message').style.display = "";
+                localStorage.removeItem('daisygrace_cart');
+                orderList.innerHTML = "<li class='empty'>Your cart is empty.</li>";
+                orderTotal.textContent = "";
+            }, 1200);
+        };
+    </script>
+</body>
+</html>
