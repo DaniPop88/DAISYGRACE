@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DAISYGRACE ESSENTIALS STORE | Personal Care & Wellness | Santa Rosa City, Laguna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shop high-quality personal care, beauty, and wellness products at DAISYGRACE ESSENTIALS STORE. Affordable, trusted essentials for Santa Rosa City and beyond.">
+  <link rel="icon" type="image/png" href="image/FAVICON.png">
+  <!-- Brand Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700|Poppins:400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF7F50;
+      --secondary: #7DDEC2;
+      --background: #FDF7F0;
+      --surface: #FFFFFF;
+      --accent: #FFD600;
+      --dark: #2D3748;
+      --shadow: 0 8px 32px #ff7f5020;
+      --radius-lg: 2rem;
+      --radius-md: 1.2rem;
+      --radius-sm: .7rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Quicksand', 'Poppins', Arial, sans-serif;
+      margin: 0;
+      background: var(--background);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+    a { color: var(--primary); text-decoration: none; }
+
+    /* HEADER / NAVIGATION */
+    header {
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      width: 100%;
+      position: sticky; top: 0; left: 0; z-index: 1000;
+    }
+    .nav-bar {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3vw; height: 76px;
+    }
+    .nav-logo img {
+      height: 54px; width: 54px;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 2.5px solid var(--secondary);
+      object-fit: contain;
+      box-shadow: 0 2px 14px #7ddec220;
+      margin-right: 16px;
+      background: #fff;
+    }
+    .nav-brand {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 1.7em; font-weight: 700;
+      color: var(--primary);
+      letter-spacing: .07em;
+    }
+    .nav-menu {
+      display: flex; align-items: center; gap: 28px;
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-weight: 600; font-size: 1.03em;
+    }
+    .nav-menu a {
+      padding: 8px 0;
+      border-bottom: 2px solid transparent;
+      transition: border .18s, color .18s;
+      color: var(--dark);
+      opacity: .75;
+      border-radius: 0 0 12px 12px;
+    }
+    .nav-menu a.active,
+    .nav-menu a:hover {
+      color: var(--primary);
+      border-bottom: 2.5px solid var(--primary);
+      opacity: 1;
+      background: #fff7ee;
+    }
+    .nav-cart-btn {
+      background: linear-gradient(90deg, var(--secondary) 60%, var(--primary) 100%);
+      color: var(--surface);
+      border: none;
+      border-radius: 100px;
+      padding: 10px 26px 10px 40px;
+      font-weight: 700; font-size: 1.03em;
+      box-shadow: 0 2px 16px #ff7f502a;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      position: relative;
+      transition: background .15s;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .nav-cart-btn:hover {
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+      color: var(--primary);
+      box-shadow: 0 2px 18px #ff7f5033;
+    }
+    .cart-icon {
+      font-size: 1.4em; position: absolute; left: 15px; top: 7px;
+    }
+    .cart-count {
+      background: var(--primary); color: var(--surface);
+      border-radius: 50px; padding: 2px 10px;
+      font-size: .99em; font-weight: 700;
+      margin-left: 3px;
+      min-width: 24px;
+      display: inline-block;
+      box-shadow: 0 2px 8px #ff7f502a;
+    }
+    .nav-burger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      background: none; border: none;
+      cursor: pointer; padding: 6px 0;
+      margin: 0 13px 0 0;
+      z-index: 13001;
+      width: 39px; height: 39px;
+    }
+    .nav-burger span {
+      display: block; width: 26px; height: 4px; margin: 4px 0;
+      background: var(--primary); border-radius: 2px; transition: all .18s;
+    }
+    @media (max-width:900px) {
+      .nav-bar { height: 58px; padding: 0 2vw;}
+      .nav-logo img { width: 37px; height: 37px;}
+      .nav-brand { font-size: 1em;}
+      .nav-menu { gap: 12px; font-size: .98em;}
+      .nav-cart-btn { padding: 7px 14px 7px 23px; font-size: .95em;}
+      .cart-icon { left: 7px; font-size: 1em;}
+    }
+    @media (max-width: 700px) {
+      .nav-bar { padding: 0 3vw; height: 44px;}
+      .nav-menu {
+        display: none;
+        position: fixed;
+        top: 44px; left: 0; right: 0;
+        background: #fff;
+        flex-direction: column;
+        gap: 0;
+        width: 100vw;
+        box-shadow: 0 8px 32px #ff7f5020;
+        border-bottom: 2px solid var(--primary);
+        z-index: 13000;
+      }
+      .nav-menu.nav-menu-mobile { display: flex; }
+      .nav-menu a {
+        padding: 13px 0 13px 18px; border-bottom: 1px solid #f6f6f6;
+        width: 100vw; text-align: left; font-size: 1.08em;
+      }
+      .nav-burger { display: flex; }
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      background: linear-gradient(120deg, #fdf7f0 55%, #fff7ee 100%);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 460px;
+      box-shadow: var(--shadow);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+    .hero-inner {
+      max-width: 1050px;
+      width: 100%;
+      padding: 64px 4vw 48px 4vw;
+      display: flex; align-items: center; gap: 50px;
+      justify-content: space-between;
+    }
+    .hero-content {
+      max-width: 540px;
+      z-index: 1;
+      padding-right: 10px;
+    }
+    .hero-title {
+      font-family: 'Poppins', Arial, sans-serif;
+      font-size: 2.4em; font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 16px;
+      line-height: 1.08; letter-spacing: .06em;
+      text-shadow: 0 3px 24px #ff7f5022;
+    }
+    .hero-desc {
+      font-size: 1.12em;
+      color: var(--dark);
+      font-family: 'Quicksand', Arial, sans-serif;
+      margin-bottom: 22px;
+      font-weight: 500;
+      opacity: .95;
+      line-height: 1.5;
+    }
+    .hero-btns {
+      display: flex; gap: 15px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .hero-btn {
+      background: var(--primary);
+      color: var(--surface);
+      border: none;
+      border-radius: 100px;
+      padding: 13px 33px;
+      font-weight: 900; font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: 0 2px 18px #ff7f502a;
+      transition: background .13s, color .13s;
+      font-family: 'Poppins', Arial, sans-serif;
+      letter-spacing: .09em;
+    }
+    .hero-btn.alt {
+      background: var(--secondary);
+      color: var(--surface);
+      border: 2px solid var(--primary);
+      margin-left: 4px;
+    }
+    .hero-btn:hover {
+      background: var(--accent); color: var(--primary);
+    }
+    .hero-img {
+      flex: 0 0 220px;
+      z-index: 0;
+      display: flex; justify-content: center; align-items: center;
+      background: #fff; border-radius: 50%; box-shadow: 0 8px 52px #ffd60033;
+      padding: 24px;
+    }
+    .hero-img img {
+      width: 180px; height: auto; border-radius: 50%;
+      box-shadow: 0 8px 32px var(--secondary), 0 0 0 8px #ffd60011;
+      border: 3px solid var(--accent);
+      object-fit: contain; display: block; background: #fff;
+    }
+    @media (max-width:900px) {
+      .hero-inner { flex-direction: column; gap: 16px; padding: 28px 2vw 18px 2vw;}
+      .hero-img { margin: 0 auto 12px auto; padding: 10px;}
+      .hero-img img { width: 95px; border-radius: 50%;}
+      .hero-title { font-size: 1.5em;}
+    }
+    @media (max-width: 700px) {
+      .hero-content { padding: 0 2vw;}
+      .hero-img { padding: 6px;}
+      .hero-img img { width: 60px;}
+      .hero-title { font-size: 1em;}
+      .hero-desc { font-size: .96em;}
+      .hero-btns { gap: 7px; }
+    }
+
+    /* PRODUCTS */
+    .products-section {
+      max-width: 1150px;
+      margin: 48px auto 0 auto;
+      padding: 0 4vw;
+    }
+    .products-title {
+      text-align:center; font-size:1.35em; font-weight:900;
+      color:var(--primary); margin-bottom:30px; letter-spacing:.01em;
+      text-shadow:0 2px 12px #ff7f5022;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .products-list {
+      display: flex; flex-wrap: wrap; gap: 22px; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .product-card {
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      min-width: 170px; max-width: 220px;
+      flex: 1 1 170px;
+      padding: 18px 14px 14px 14px;
+      border: none;
+      display: flex; flex-direction: column; align-items: center;
+      transition: box-shadow .14s;
+      position: relative;
+    }
+    .product-card:hover {
+      box-shadow: 0 12px 30px #ffd60033;
+      transform: scale(1.05);
+      background: #fff7ee;
+    }
+    .product-img-holder {
+      width: 80px; height: 80px;
+      background: #fffde9;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; border: none;
+      box-shadow: 0 2px 10px #ff7f5011;
+    }
+    .product-img-holder img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .product-name {
+      font-weight:800; color:var(--primary); margin-bottom:4px;
+      font-size:1.05em; font-family:'Poppins',Arial,sans-serif;
+      text-align:center;
+    }
+    .product-desc {
+      font-size:.97em; color:var(--dark); margin-bottom:8px;
+      text-align:center; font-family:'Quicksand',Arial,sans-serif;
+    }
+    .product-price {
+      color:var(--accent); font-size:1.04em; font-weight:800; margin-bottom:6px;
+      font-family:'Poppins',Arial,sans-serif;
+    }
+    .product-stock {
+      font-size:.97em; color:var(--secondary); margin-bottom:7px;
+      font-family:'Quicksand',Arial,sans-serif;
+    }
+    .product-btn {
+      background: linear-gradient(90deg, var(--primary) 70%, var(--secondary) 100%);
+      color: var(--surface);
+      border: none; border-radius: 100px;
+      padding: 8px 16px; font-size: .99em; font-weight: 700;
+      cursor: pointer; margin-top: auto;
+      transition: background .13s, color .13s;
+      font-family: 'Poppins', Arial, sans-serif;
+      text-align: center; width: 100%; letter-spacing: .04em;
+      box-shadow: 0 2px 12px #ff7f5022;
+    }
+    .product-btn:disabled {
+      opacity:.6;
+      cursor:not-allowed;
+      background: #eee;
+      color: #888;
+      border: 1px solid #ddd;
+    }
+    .product-btn:hover {
+      background: linear-gradient(90deg, var(--secondary) 70%, var(--primary) 100%);
+      color: var(--primary);
+    }
+    @media (max-width:700px) {
+      .products-list { flex-direction: column;}
+      .product-card { min-width: 90vw; max-width: 98vw;}
+      .products-section { padding: 0 3vw;}
+    }
+    @media (max-width:420px) {
+      .product-card { min-width: 99vw; max-width: 100vw; padding: 5px 2vw 8px 2vw;}
+    }
+
+    /* CART MODAL */
+    .cart-modal-bg {
+      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
+      background:rgba(255,127,80,0.12); z-index:1200;
+    }
+    .cart-modal {
+      display:none; position:fixed; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:340px; max-width:98vw;
+      background:var(--surface); color:var(--dark);
+      border-radius:var(--radius-md); box-shadow:0 12px 48px #ff7f5044,0 0 0 5px #ffd60044;
+      z-index:1300; padding:18px 16px 12px 16px; border:2px solid var(--secondary);
+      text-align:left; font-family:'Quicksand',Arial,sans-serif;
+    }
+    .cart-modal h3 {
+      color:var(--primary); font-size:1.1em; margin:0 0 10px 0; font-weight:900;
+      letter-spacing:.04em; font-family:'Poppins',Arial,sans-serif;
+    }
+    .cart-items-list { list-style:none; padding:0; margin:0 0 7px 0;}
+    .cart-items-list li { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;}
+    .cart-items-list li span { font-size:.98em;}
+    .empty-msg {
+      display:none; color:#888; font-style:italic; margin:8px 0; font-size:.95em;
+    }
+    .cart-total-row {
+      font-weight:700; color:var(--accent); margin:4px 0;
+    }
+    .product-btn.close-btn {
+      background:#fff; color:var(--secondary); border:2px solid var(--primary); margin-top:7px;
+    }
+    @media (max-width:700px) {
+      .cart-modal {
+        width: 98vw !important;
+        left: 50% !important;
+        transform: translate(-50%,-50%) !important;
+        padding: 7vw 2vw 4vw 2vw !important;
+      }
+    }
+    @media (max-width:420px) {
+      .cart-modal {
+        width: 99vw !important;
+        padding: 10px 2vw 7px 2vw !important;
+      }
+    }
+
+    /* FOOTER */
+    footer {
+      background: #fffde9;
+      color: var(--dark);
+      padding: 32px 10px 22px 10px;
+      margin-top: 48px;
+      font-size: 1.05em;
+      font-family: 'Quicksand', Arial, sans-serif;
+      border-top: 3px solid var(--primary);
+      box-shadow: 0 -4px 18px #ff7f5011;
+    }
+    .footer-main {
+      max-width: 850px; margin: 0 auto; text-align: center;
+    }
+    .footer-contact-title {
+      margin-bottom: 6px;
+      font-weight: 900;
+      font-size: 1.15em;
+      color: var(--primary);
+      font-family: 'Poppins', Arial, sans-serif;
+      letter-spacing: .08em;
+    }
+    .footer-contact {
+      margin-bottom: 8px;
+      color: var(--dark);
+      font-size: .98em;
+    }
+    .footer-contact a { color: var(--secondary); text-decoration: underline; }
+    .footer-copy {
+      color: var(--accent);
+      font-size: 0.97em;
+      margin-top: 8px;
+      margin-bottom: 3px;
+      font-family: 'Poppins', Arial, sans-serif;
+      letter-spacing: .04em;
+    }
+    .footer-links {
+      margin-top: 5px;
+      font-size: 1em;
+    }
+    .footer-links a {
+      color: var(--primary);
+      margin: 0 6px;
+      text-decoration: underline;
+      transition: color .13s;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .footer-links a:hover { color: var(--secondary); }
+  </style>
+</head>
+<body>
+  <!-- HEADER / NAVIGATION -->
+  <header>
+    <div class="nav-bar">
+      <div class="nav-logo">
+        <img src="image/LOGO.png" alt="DAISYGRACE Essentials Store Logo">
+      </div>
+      <span class="nav-brand">DAISYGRACE ESSENTIALS STORE</span>
+      <button class="nav-burger" id="nav-burger" aria-label="Open Menu" tabindex="0">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <div class="nav-menu" id="nav-menu">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#products">Products</a>
+          <a href="#contact">Contact</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="refund-policy.html">Refund Policy</a>
+        </div>
+      </nav>
+      <button class="nav-cart-btn" onclick="showCart()" aria-label="View Cart">
+        <span class="cart-icon">🛒</span>
+        Cart <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="home">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-title">Welcome to DAISYGRACE ESSENTIALS STORE!</div>
+        <div class="hero-desc">
+          Your trusted destination for personal care items and essentials in Santa Rosa City, Laguna.<br>
+          At DAISYGRACE, we offer a wide selection of high-quality personal care products, from skincare and haircare to wellness items.<br>
+          We’re here to help you look and feel your best, with products that promote health and beauty at affordable prices.
+        </div>
+        <div class="hero-btns">
+          <a href="#products"><button class="hero-btn">Shop Now</button></a>
+          <a href="#about"><button class="hero-btn alt">Learn More</button></a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="image/LOGO.png" alt="DAISYGRACE Essentials Logo" width="180" height="180">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section class="products-section" id="about" style="margin-top:0;">
+    <div class="products-title" style="margin-bottom:8px;">About Us</div>
+    <div style="max-width:700px; margin:0 auto; font-size:1.13em; color:var(--dark); background:var(--surface); border-radius:var(--radius-md); box-shadow:0 2px 18px #ff7f5016; padding:28px 26px 16px 26px; font-family:'Quicksand',Arial,sans-serif;">
+      <b>About DAISYGRACE ESSENTIALS STORE</b><br><br>
+      DAISYGRACE ESSENTIALS STORE was founded with the goal of bringing high-quality personal care items to the people of Santa Rosa. We understand the importance of self-care, which is why we provide a wide range of products that cater to your needs. Whether you're looking for daily essentials or luxurious skincare, our store offers only the best products to help you take care of yourself, inside and out.<br><br>
+      <b>Our Mission:</b> To provide our customers with premium personal care items that promote health, beauty, and wellness.<br>
+      <b>Our Values:</b>
+      <ul style="margin-left:1.1em; margin-top:7px;">
+        <li><b>Quality Care</b>: We offer only the best products for your self-care routine.</li>
+        <li><b>Customer Satisfaction</b>: We are committed to providing products that meet your needs and exceed your expectations.</li>
+        <li><b>Affordability</b>: Offering high-quality items at prices you can afford.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products-section" id="products">
+    <div class="products-title">Our Products</div>
+    <div class="products-list" id="products-list">
+      <!-- Products Rendered by JS -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="products-section" id="contact" style="margin-top:0;">
+    <div class="products-title" style="margin-bottom:8px;">Contact Us</div>
+    <div style="max-width:700px; margin:0 auto; font-size:1.13em; color:var(--dark); background:var(--surface); border-radius:var(--radius-md); box-shadow:0 2px 18px #ffd60011; padding:20px 21px 13px 21px; font-family:'Quicksand',Arial,sans-serif;">
+      <ul style="margin-left:1.2em;">
+        <li><strong>Phone:</strong> +63 927 621 5488</li>
+        <li><strong>Email:</strong> <a href="mailto:contact@daisygracestore.com">contact@daisygracestore.com</a></li>
+        <li><strong>Address:</strong> #19 Laurel Street, Barangay Balibago, Santa Rosa City, Laguna, Region IV-A, Philippines</li>
+        <li><strong>Business Hours:</strong> Monday–Saturday: <strong>9:00 AM – 5:00 PM</strong> <br>Sunday: <em>Closed</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CART MODAL -->
+  <div class="cart-modal-bg" id="cart-modal-bg"></div>
+  <aside class="cart-modal" id="cart-modal" tabindex="0">
+    <h3>🛒 Your Cart <span class="cart-count" id="cart-modal-count">0</span></h3>
+    <ul class="cart-items-list" id="cart-items"></ul>
+    <div class="empty-msg" id="cart-empty-msg">Your cart is empty.</div>
+    <div class="cart-total-row" id="cart-total-row"></div>
+    <button class="product-btn" onclick="checkout()" aria-label="Checkout" style="margin-right:7px;">Checkout</button>
+    <button class="product-btn" onclick="emptyCart()" aria-label="Empty Cart" style="background:#fff;color:#FF7F50;border:2px solid #FF7F50;">Empty Cart</button>
+    <button class="product-btn close-btn" onclick="closeCart()" aria-label="Close">Close</button>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <div class="footer-contact">
+        <div class="footer-contact-title"><b>DAISYGRACE ESSENTIALS STORE</b></div>
+        <div>
+          #19 Laurel Street, Barangay Balibago, Santa Rosa City, Laguna, Region IV-A, Philippines<br>
+          <b>Phone:</b> +63 927 621 5488 &nbsp;|&nbsp; <b>Email:</b>
+          <a href="mailto:contact@daisygracestore.com">contact@daisygracestore.com</a>
+        </div>
+        <div>VAT No: 123-456-7890</div>
+        <div>Business Hours: Mon–Sat, 9:00 AM – 5:00 PM</div>
+      </div>
+      <div class="footer-links">
+        <a href="privacy-policy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms of Service</a> |
+        <a href="refund-policy.html">Refund Policy</a>
+      </div>
+      <div class="footer-copy">
+        © 2025 DAISYGRACE ESSENTIALS STORE. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // --- MOBILE NAV ---
+    (function() {
+      var burger = document.getElementById('nav-burger');
+      var menu = document.getElementById('nav-menu');
+      function closeMenuOnResize() {
+        if(window.innerWidth > 700) {
+          menu.classList.remove('nav-menu-mobile');
+        }
+      }
+      burger && burger.addEventListener('click', function(e) {
+        menu.classList.toggle('nav-menu-mobile');
+      });
+      window.addEventListener('resize', closeMenuOnResize);
+      document.addEventListener('click', function(e) {
+        if(menu.classList.contains('nav-menu-mobile') &&
+          !menu.contains(e.target) &&
+          (!burger.contains(e.target))
+        ) {
+          menu.classList.remove('nav-menu-mobile');
+        }
+      });
+    })();
+
+    // --- PRODUCT DATA ---
+    const products = [
+      {
+        name: "Radiant Skin Moisturizer",
+        price: (Math.random()*30+10).toFixed(2),
+        desc: "Hydrates and revitalizes for smooth, glowing skin.",
+        stock: Math.floor(Math.random()*10)+5,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Gentle Cleanser",
+        price: (Math.random()*15+8).toFixed(2),
+        desc: "Mild foaming cleanser for all skin types.",
+        stock: Math.floor(Math.random()*10)+3,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Daily Sunscreen SPF50",
+        price: (Math.random()*25+12).toFixed(2),
+        desc: "Protects against harmful UV rays, lightweight feel.",
+        stock: Math.floor(Math.random()*10)+7,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Strengthening Shampoo",
+        price: (Math.random()*20+10).toFixed(2),
+        desc: "For stronger, healthier hair every wash.",
+        stock: Math.floor(Math.random()*10)+6,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Nourishing Conditioner",
+        price: (Math.random()*20+10).toFixed(2),
+        desc: "Restores shine and smoothness for all hair types.",
+        stock: Math.floor(Math.random()*10)+5,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Wellness Multivitamins",
+        price: (Math.random()*40+18).toFixed(2),
+        desc: "Essential nutrients for daily wellness.",
+        stock: Math.floor(Math.random()*10)+10,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Herbal Bath Soap",
+        price: (Math.random()*12+5).toFixed(2),
+        desc: "Refreshing, gentle, and naturally fragrant.",
+        stock: Math.floor(Math.random()*10)+10,
+        img: "image/LOGO.png"
+      },
+      {
+        name: "Beauty Blush Palette",
+        price: (Math.random()*25+12).toFixed(2),
+        desc: "Vibrant shades to enhance your beauty routine.",
+        stock: Math.floor(Math.random()*10)+5,
+        img: "image/LOGO.png"
+      }
+    ];
+
+    // --- CART ---
+    let cart = [];
+
+    // --- RENDER PRODUCTS ---
+    function renderProducts() {
+      const el = document.getElementById('products-list');
+      el.innerHTML = '';
+      products.forEach((prod, idx) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img-holder">
+            <img src="${prod.img}" alt="${prod.name} image" onerror="this.src='image/LOGO.png';">
+          </div>
+          <div class="product-name">${prod.name}</div>
+          <div class="product-desc">${prod.desc}</div>
+          <div class="product-price">$${prod.price}</div>
+          <div class="product-stock">Qty: ${prod.stock}</div>
+          <button class="product-btn" onclick="addToCart(${idx})" ${prod.stock === 0 ? 'disabled' : ''}>Add to Cart</button>
+        `;
+        el.appendChild(card);
+      });
+    }
+
+    // --- ADD TO CART ---
+    function addToCart(idx) {
+      let prod = products[idx];
+      let existing = cart.find(item => item.name === prod.name);
+      if(existing) {
+        if(existing.qty < prod.stock) existing.qty++;
+      } else {
+        cart.push({ name: prod.name, price: prod.price, qty: 1, stock: prod.stock });
+      }
+      updateCart();
+      highlightCart();
+    }
+
+    // --- UPDATE CART DISPLAY ---
+    function updateCart() {
+      let totalCount = 0, totalAmount = 0;
+      cart.forEach(item => { totalCount += item.qty; totalAmount += parseFloat(item.price)*item.qty; });
+      document.getElementById('cart-count').textContent = totalCount;
+      document.getElementById('cart-modal-count').textContent = totalCount;
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      if(cart.length === 0) {
+        document.getElementById('cart-empty-msg').style.display = '';
+        document.getElementById('cart-total-row').textContent = '';
+      } else {
+        document.getElementById('cart-empty-msg').style.display = 'none';
+        cart.forEach((item, idx) => {
+          let li = document.createElement("li");
+          li.innerHTML = `<span>${item.name} × ${item.qty} - $${(parseFloat(item.price)*item.qty).toFixed(2)}</span>
+            <button class="product-btn" aria-label="Remove ${item.name} from cart" onclick="removeCartItem(${idx})" style="background:#fff;color:#FF7F50;border:2px solid #FF7F50;padding:3px 13px;min-width:0;">×</button>`;
+          cartItems.appendChild(li);
+        });
+        let totalItem = document.createElement("li");
+        totalItem.className = "cart-total-row";
+        totalItem.innerHTML = `<span>Grand Total:</span> <span>$${totalAmount.toFixed(2)}</span>`;
+        cartItems.appendChild(totalItem);
+        document.getElementById('cart-total-row').textContent = '';
+      }
+      localStorage.setItem('daisygrace_cart', JSON.stringify(cart));
+    }
+
+    // --- REMOVE CART ITEM ---
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
+      updateCart();
+    }
+
+    // --- CART UI ---
+    function highlightCart() {
+      const cartDiv = document.querySelector('.nav-cart-btn');
+      cartDiv.style.boxShadow = "0px 12px 40px #FF7F5077, 0 0 0 10px #FFD600";
+      setTimeout(() => cartDiv.style.boxShadow = "", 340);
+    }
+    function showCart() {
+      document.getElementById("cart-modal").style.display = "block";
+      document.getElementById("cart-modal-bg").style.display = "block";
+    }
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+      document.getElementById("cart-modal-bg").style.display = "none";
+    }
+    function checkout() {
+      if(cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+      localStorage.setItem('daisygrace_cart', JSON.stringify(cart));
+      alert("Checkout is not implemented yet. Thank you for shopping!");
+      closeCart();
+    }
+    function emptyCart() {
+      if(!confirm("Are you sure you want to empty your cart?")) return;
+      cart = [];
+      updateCart();
+    }
+
+    // --- RESTORE CART ---
+    window.addEventListener("DOMContentLoaded", function() {
+      renderProducts();
+      const savedCart = localStorage.getItem('daisygrace_cart');
+      if(savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+      }
+      document.getElementById("cart-modal-bg").onclick = closeCart;
+      document.querySelectorAll('.nav-menu a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
