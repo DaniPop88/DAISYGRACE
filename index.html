@@ -527,8 +527,7 @@
     <ul class="cart-items-list" id="cart-items"></ul>
     <div class="empty-msg" id="cart-empty-msg">Your cart is empty.</div>
     <div class="cart-total-row" id="cart-total-row"></div>
-    <button class="product-btn" onclick="checkout()" aria-label="Checkout" style="margin-right:7px;">Checkout</button>
-    <a href="order-summary.html" style="text-decoration:none;"><button class="product-btn" aria-label="Go to Order Summary" style="background:#fff;color:#FF7F50;border:2px solid #FF7F50;">Order Summary</button></a>
+    <button class="product-btn" id="checkout-btn" aria-label="Checkout" style="margin-right:7px;">Checkout</button>
     <button class="product-btn" onclick="emptyCart()" aria-label="Empty Cart" style="background:#fff;color:#FF7F50;border:2px solid #FF7F50;">Empty Cart</button>
     <button class="product-btn close-btn" onclick="closeCart()" aria-label="Close">Close</button>
   </aside>
@@ -728,22 +727,13 @@
       document.getElementById("cart-modal").style.display = "none";
       document.getElementById("cart-modal-bg").style.display = "none";
     }
-    function checkout() {
-      if(cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
+    // --- CHECKOUT BTN BEHAVIOR ---
+    function goToOrderSummary() {
+      // Save cart before redirecting
       localStorage.setItem('daisygrace_cart', JSON.stringify(cart));
-      alert("Checkout is not implemented yet. Thank you for shopping!");
-      closeCart();
+      window.location.href = "order-summary.html";
     }
-    function emptyCart() {
-      if(!confirm("Are you sure you want to empty your cart?")) return;
-      cart = [];
-      updateCart();
-    }
-
-    // --- RESTORE CART ---
+    // Attach event after DOMContentLoaded
     window.addEventListener("DOMContentLoaded", function() {
       renderProducts();
       const savedCart = localStorage.getItem('daisygrace_cart');
@@ -758,7 +748,23 @@
           link.classList.add('active');
         });
       });
+      const checkoutBtn = document.getElementById('checkout-btn');
+      if (checkoutBtn) {
+        checkoutBtn.onclick = function() {
+          if(cart.length === 0) {
+            alert("Your cart is empty!");
+            return;
+          }
+          goToOrderSummary();
+        };
+      }
     });
+    // --- EMPTY CART ---
+    function emptyCart() {
+      if(!confirm("Are you sure you want to empty your cart?")) return;
+      cart = [];
+      updateCart();
+    }
   </script>
 </body>
 </html>
