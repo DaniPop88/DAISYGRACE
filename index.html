@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DAISYGRACE ESSENTIALS STORE | Personal Care & Wellness | Santa Rosa City, Laguna</title>
+  <title>DaisyGrace Store | Personal Care & Wellness | Santa Rosa City, Laguna</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shop high-quality personal care, beauty, and wellness products at DAISYGRACE ESSENTIALS STORE. Affordable, trusted essentials for Santa Rosa City and beyond.">
-  <link rel="icon" type="image/png" href="image/FAVICON.png">
-  <!-- Brand Fonts -->
+  <meta name="description" content="Shop high-quality personal care, beauty, and wellness products at DaisyGrace Store. Affordable, trusted essentials for Santa Rosa City and beyond.">
+  <link rel="icon" type="image/png" href="image/LOGO.png">
   <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700|Poppins:400,500,700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -41,8 +40,14 @@
     }
     .nav-bar {
       max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; align-items: center; justify-content: flex-start;
       padding: 0 3vw; height: 76px;
+      position: relative;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
     }
     .nav-logo img {
       height: 54px; width: 54px;
@@ -51,19 +56,23 @@
       border: 2.5px solid var(--secondary);
       object-fit: contain;
       box-shadow: 0 2px 14px #7ddec220;
-      margin-right: 16px;
+      margin-right: 8px;
       background: #fff;
+      display: block;
     }
     .nav-brand {
       font-family: 'Poppins', Arial, sans-serif;
       font-size: 1.7em; font-weight: 700;
       color: var(--primary);
       letter-spacing: .07em;
+      white-space: nowrap;
+      overflow: visible;
     }
     .nav-menu {
       display: flex; align-items: center; gap: 28px;
       font-family: 'Quicksand', Arial, sans-serif;
       font-weight: 600; font-size: 1.03em;
+      margin-left: 18px;
     }
     .nav-menu a {
       padding: 8px 0;
@@ -80,6 +89,21 @@
       opacity: 1;
       background: #fff7ee;
     }
+    .nav-burger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      background: none; border: none;
+      cursor: pointer; padding: 6px 0;
+      margin-left: auto;
+      margin-right: 30px;
+      z-index: 13001;
+      width: 39px; height: 39px;
+      position: relative;
+    }
+    .nav-burger span {
+      display: block; width: 26px; height: 4px; margin: 4px 0;
+      background: var(--primary); border-radius: 2px; transition: all .18s;
+    }
     .nav-cart-btn {
       background: linear-gradient(90deg, var(--secondary) 60%, var(--primary) 100%);
       color: var(--surface);
@@ -90,7 +114,10 @@
       box-shadow: 0 2px 16px #ff7f502a;
       cursor: pointer;
       display: flex; align-items: center; gap: 8px;
-      position: relative;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2000;
       transition: background .15s;
       font-family: 'Quicksand', Arial, sans-serif;
     }
@@ -111,23 +138,10 @@
       display: inline-block;
       box-shadow: 0 2px 8px #ff7f502a;
     }
-    .nav-burger {
-      display: none;
-      flex-direction: column; justify-content: center; align-items: center;
-      background: none; border: none;
-      cursor: pointer; padding: 6px 0;
-      margin: 0 13px 0 0;
-      z-index: 13001;
-      width: 39px; height: 39px;
-    }
-    .nav-burger span {
-      display: block; width: 26px; height: 4px; margin: 4px 0;
-      background: var(--primary); border-radius: 2px; transition: all .18s;
-    }
     @media (max-width:900px) {
       .nav-bar { height: 58px; padding: 0 2vw;}
       .nav-logo img { width: 37px; height: 37px;}
-      .nav-brand { font-size: 1em;}
+      .nav-brand { font-size: 1em; overflow: visible;}
       .nav-menu { gap: 12px; font-size: .98em;}
       .nav-cart-btn { padding: 7px 14px 7px 23px; font-size: .95em;}
       .cart-icon { left: 7px; font-size: 1em;}
@@ -151,7 +165,23 @@
         padding: 13px 0 13px 18px; border-bottom: 1px solid #f6f6f6;
         width: 100vw; text-align: left; font-size: 1.08em;
       }
-      .nav-burger { display: flex; }
+      .nav-burger { display: flex; margin-right: 18px; }
+      .nav-logo img { width: 30px; height: 30px;}
+      .nav-brand { font-size: .98em; overflow: visible;}
+      .nav-cart-btn {
+        right: 10px;
+        bottom: 10px;
+        font-size: .96em;
+        padding: 7px 11px 7px 26px;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-cart-btn {
+        right: 6px;
+        bottom: 6px;
+        font-size: .93em;
+        padding: 7px 8px 7px 22px;
+      }
     }
 
     /* HERO SECTION */
@@ -339,17 +369,31 @@
 
     /* CART MODAL */
     .cart-modal-bg {
-      display:none; position:fixed; top:0; left:0; width:100vw; height:100vh;
-      background:rgba(255,127,80,0.12); z-index:1200;
+      display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(255,127,80,0.12); z-index: 1200;
     }
     .cart-modal {
-      display:none; position:fixed; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      width:340px; max-width:98vw;
-      background:var(--surface); color:var(--dark);
-      border-radius:var(--radius-md); box-shadow:0 12px 48px #ff7f5044,0 0 0 5px #ffd60044;
-      z-index:1300; padding:18px 16px 12px 16px; border:2px solid var(--secondary);
-      text-align:left; font-family:'Quicksand',Arial,sans-serif;
+      display: none; position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 350px; max-width: 95vw;
+      background: var(--surface); color: var(--dark);
+      border-radius: var(--radius-md); box-shadow: 0 12px 48px #ff7f5044,0 0 0 5px #ffd60044;
+      z-index: 1300; padding: 22px 18px 16px 18px; border: 2px solid var(--secondary);
+      text-align: left; font-family: 'Quicksand',Arial,sans-serif;
+    }
+    @media (max-width: 700px) {
+      .cart-modal {
+        width: 90vw !important; max-width: 95vw !important;
+        left: 50% !important;
+        transform: translate(-50%,-50%) !important;
+        padding: 18px 10px 10px 10px !important;
+      }
+    }
+    @media (max-width:420px) {
+      .cart-modal {
+        width: 96vw !important;
+        padding: 10px 4vw 7px 4vw !important;
+      }
     }
     .cart-modal h3 {
       color:var(--primary); font-size:1.1em; margin:0 0 10px 0; font-weight:900;
@@ -366,20 +410,6 @@
     }
     .product-btn.close-btn {
       background:#fff; color:var(--secondary); border:2px solid var(--primary); margin-top:7px;
-    }
-    @media (max-width:700px) {
-      .cart-modal {
-        width: 98vw !important;
-        left: 50% !important;
-        transform: translate(-50%,-50%) !important;
-        padding: 7vw 2vw 4vw 2vw !important;
-      }
-    }
-    @media (max-width:420px) {
-      .cart-modal {
-        width: 99vw !important;
-        padding: 10px 2vw 7px 2vw !important;
-      }
     }
 
     /* FOOTER */
@@ -437,12 +467,9 @@
   <header>
     <div class="nav-bar">
       <div class="nav-logo">
-        <img src="image/LOGO.png" alt="DAISYGRACE Essentials Store Logo">
+        <img src="image/LOGO.png" alt="DaisyGrace Store Logo">
+        <span class="nav-brand">DaisyGrace Store</span>
       </div>
-      <span class="nav-brand">DAISYGRACE ESSENTIALS STORE</span>
-      <button class="nav-burger" id="nav-burger" aria-label="Open Menu" tabindex="0">
-        <span></span><span></span><span></span>
-      </button>
       <nav>
         <div class="nav-menu" id="nav-menu">
           <a href="#home" class="active">Home</a>
@@ -455,21 +482,24 @@
           <a href="refund-policy.html">Refund Policy</a>
         </div>
       </nav>
-      <button class="nav-cart-btn" onclick="showCart()" aria-label="View Cart">
-        <span class="cart-icon">🛒</span>
-        Cart <span class="cart-count" id="cart-count">0</span>
+      <button class="nav-burger" id="nav-burger" aria-label="Open Menu" tabindex="0">
+        <span></span><span></span><span></span>
       </button>
     </div>
+    <button class="nav-cart-btn" onclick="showCart()" aria-label="View Cart">
+      <span class="cart-icon">🛒</span>
+      Cart <span class="cart-count" id="cart-count">0</span>
+    </button>
   </header>
 
   <!-- HERO SECTION -->
   <section class="hero-section" id="home">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-title">Welcome to DAISYGRACE ESSENTIALS STORE!</div>
+        <div class="hero-title">Welcome to DaisyGrace Store!</div>
         <div class="hero-desc">
           Your trusted destination for personal care items and essentials in Santa Rosa City, Laguna.<br>
-          At DAISYGRACE, we offer a wide selection of high-quality personal care products, from skincare and haircare to wellness items.<br>
+          At DaisyGrace Store, we offer a wide selection of high-quality personal care products, from skincare and haircare to wellness items.<br>
           We’re here to help you look and feel your best, with products that promote health and beauty at affordable prices.
         </div>
         <div class="hero-btns">
@@ -478,7 +508,7 @@
         </div>
       </div>
       <div class="hero-img">
-        <img src="image/LOGO.png" alt="DAISYGRACE Essentials Logo" width="180" height="180">
+        <img src="image/LOGO.png" alt="DaisyGrace Store Logo" width="180" height="180">
       </div>
     </div>
   </section>
@@ -487,8 +517,8 @@
   <section class="products-section" id="about" style="margin-top:0;">
     <div class="products-title" style="margin-bottom:8px;">About Us</div>
     <div style="max-width:700px; margin:0 auto; font-size:1.13em; color:var(--dark); background:var(--surface); border-radius:var(--radius-md); box-shadow:0 2px 18px #ff7f5016; padding:28px 26px 16px 26px; font-family:'Quicksand',Arial,sans-serif;">
-      <b>About DAISYGRACE ESSENTIALS STORE</b><br><br>
-      DAISYGRACE ESSENTIALS STORE was founded with the goal of bringing high-quality personal care items to the people of Santa Rosa. We understand the importance of self-care, which is why we provide a wide range of products that cater to your needs. Whether you're looking for daily essentials or luxurious skincare, our store offers only the best products to help you take care of yourself, inside and out.<br><br>
+      <b>About DaisyGrace Store</b><br><br>
+      DaisyGrace Store was founded with the goal of bringing high-quality personal care items to the people of Santa Rosa. We understand the importance of self-care, which is why we provide a wide range of products that cater to your needs. Whether you're looking for daily essentials or luxurious skincare, our store offers only the best products to help you take care of yourself, inside and out.<br><br>
       <b>Our Mission:</b> To provide our customers with premium personal care items that promote health, beauty, and wellness.<br>
       <b>Our Values:</b>
       <ul style="margin-left:1.1em; margin-top:7px;">
@@ -536,7 +566,7 @@
   <footer>
     <div class="footer-main">
       <div class="footer-contact">
-        <div class="footer-contact-title"><b>DAISYGRACE ESSENTIALS STORE</b></div>
+        <div class="footer-contact-title"><b>DaisyGrace Store</b></div>
         <div>
           #19 Laurel Street, Barangay Balibago, Santa Rosa City, Laguna, Region IV-A, Philippines<br>
           <b>Phone:</b> +63 927 621 5488 &nbsp;|&nbsp; <b>Email:</b>
@@ -552,7 +582,7 @@
         <a href="refund-policy.html">Refund Policy</a>
       </div>
       <div class="footer-copy">
-        © 2025 DAISYGRACE ESSENTIALS STORE. All rights reserved.
+        © 2025 DaisyGrace Store. All rights reserved.
       </div>
     </div>
   </footer>
@@ -589,56 +619,56 @@
         price: (Math.random()*30+10).toFixed(2),
         desc: "Hydrates and revitalizes for smooth, glowing skin.",
         stock: Math.floor(Math.random()*10)+5,
-        img: "image/LOGO.png"
+        img: "image/Pictures1.png"
       },
       {
         name: "Gentle Cleanser",
         price: (Math.random()*15+8).toFixed(2),
         desc: "Mild foaming cleanser for all skin types.",
         stock: Math.floor(Math.random()*10)+3,
-        img: "image/LOGO.png"
+        img: "image/Pictures2.png"
       },
       {
         name: "Daily Sunscreen SPF50",
         price: (Math.random()*25+12).toFixed(2),
         desc: "Protects against harmful UV rays, lightweight feel.",
         stock: Math.floor(Math.random()*10)+7,
-        img: "image/LOGO.png"
+        img: "image/Pictures3.png"
       },
       {
         name: "Strengthening Shampoo",
         price: (Math.random()*20+10).toFixed(2),
         desc: "For stronger, healthier hair every wash.",
         stock: Math.floor(Math.random()*10)+6,
-        img: "image/LOGO.png"
+        img: "image/Pictures4.png"
       },
       {
         name: "Nourishing Conditioner",
         price: (Math.random()*20+10).toFixed(2),
         desc: "Restores shine and smoothness for all hair types.",
         stock: Math.floor(Math.random()*10)+5,
-        img: "image/LOGO.png"
+        img: "image/Pictures5.png"
       },
       {
         name: "Wellness Multivitamins",
         price: (Math.random()*40+18).toFixed(2),
         desc: "Essential nutrients for daily wellness.",
         stock: Math.floor(Math.random()*10)+10,
-        img: "image/LOGO.png"
+        img: "image/Pictures6.png"
       },
       {
         name: "Herbal Bath Soap",
         price: (Math.random()*12+5).toFixed(2),
         desc: "Refreshing, gentle, and naturally fragrant.",
         stock: Math.floor(Math.random()*10)+10,
-        img: "image/LOGO.png"
+        img: "image/Pictures7.png"
       },
       {
         name: "Beauty Blush Palette",
         price: (Math.random()*25+12).toFixed(2),
         desc: "Vibrant shades to enhance your beauty routine.",
         stock: Math.floor(Math.random()*10)+5,
-        img: "image/LOGO.png"
+        img: "image/Pictures8.png"
       }
     ];
 
@@ -733,7 +763,6 @@
       localStorage.setItem('daisygrace_cart', JSON.stringify(cart));
       window.location.href = "order-summary.html";
     }
-    // Attach event after DOMContentLoaded
     window.addEventListener("DOMContentLoaded", function() {
       renderProducts();
       const savedCart = localStorage.getItem('daisygrace_cart');
@@ -759,7 +788,6 @@
         };
       }
     });
-    // --- EMPTY CART ---
     function emptyCart() {
       if(!confirm("Are you sure you want to empty your cart?")) return;
       cart = [];
