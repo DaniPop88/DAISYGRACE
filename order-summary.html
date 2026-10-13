@@ -5,7 +5,7 @@
     <title>Order Summary - DAISYGRACE ESSENTIALS STORE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Order summary and secure checkout for DAISYGRACE ESSENTIALS STORE. Review your cart, enter delivery details, and choose a payment method.">
-    <link rel="icon" type="image/png" href="image/FAVICON.png">
+    <link rel="icon" type="image/png" href="image/LOGO.png">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700|Poppins:400,500,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -249,6 +249,7 @@
             .brand-logo { width: 48px; height: 48px; }
         }
     </style>
+  <link rel="stylesheet" href="polish.css">
 </head>
 <body>
     <div class="summary-container">
@@ -334,7 +335,7 @@
             <div class="order-section-title"><span style="font-size:1.13em;">📱</span>Need Assistance?</div>
             <div class="order-section-content">
                 If you have questions or require help, please contact us at
-                <a href="mailto:contact@daisygracestore.com">contact@daisygracestore.com</a>.<br>
+                <a href="mailto:info@daisygrace.store">info@daisygrace.store</a>.<br>
                 We’re here to assist you every step of the way!
             </div>
             <div style="margin-top:16px;">
@@ -347,8 +348,8 @@
     <script>
         // Payment methods
         const paymentGroups = [
-            [{ name: "GCASH", icon: "image/GCASH.png" }],
-            [{ name: "BDO", icon: "image/BDO.png" }, { name: "BPI", icon: "image/BPI.png" }],
+            [{ name: "GCASH", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23007DFE'/%3E%3Ctext x='30' y='39' font-family='Arial,sans-serif' font-size='24' font-weight='700' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" }],
+            [{ name: "BDO", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23003DA5'/%3E%3Ctext x='30' y='35' font-family='Arial,sans-serif' font-size='14' font-weight='700' fill='white' text-anchor='middle'%3EBDO%3C/text%3E%3C/svg%3E" }, { name: "BPI", icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23CE1126'/%3E%3Ctext x='30' y='36' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EBPI%3C/text%3E%3C/svg%3E" }],
             [{ name: "CASH ON DELIVERY", icon: "" }]
         ];
         const paymentMethodsDiv = document.getElementById('payment-methods');
@@ -408,6 +409,7 @@
 
         // Form validation & submit
         document.getElementById('checkout-form').onsubmit = function(e){
+            e.preventDefault();
             if (!document.getElementById('payment-hidden').value) {
                 alert("Please select your preferred payment method.");
                 return false;
